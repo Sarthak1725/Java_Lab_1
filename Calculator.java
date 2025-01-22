@@ -1,9 +1,10 @@
+// Calculator.java
 import java.util.Scanner;
 
 public class Calculator {
     private static final Scanner scanner = new Scanner(System.in);
 
-    // function for addition 
+    // Addition
     public static void addition() {
         System.out.print("Enter two numbers to add: ");
         double num1 = scanner.nextDouble();
@@ -11,7 +12,7 @@ public class Calculator {
         System.out.println("Sum: " + (num1 + num2));
     }
 
-    //function for  Subtraction
+    // Subtraction
     public static void subtraction() {
         System.out.print("Enter two numbers to subtract: ");
         double num1 = scanner.nextDouble();
@@ -19,7 +20,7 @@ public class Calculator {
         System.out.println("Difference: " + (num1 - num2));
     }
 
-    //  function for Multiplication
+    // Multiplication
     public static void multiplication() {
         System.out.print("Enter two numbers to multiply: ");
         double num1 = scanner.nextDouble();
@@ -27,7 +28,7 @@ public class Calculator {
         System.out.println("Product: " + (num1 * num2));
     }
 
-    //  function for Division
+    // Division
     public static void division() {
         System.out.print("Enter two numbers to divide: ");
         double num1 = scanner.nextDouble();
@@ -35,10 +36,10 @@ public class Calculator {
         if (num2 != 0)
             System.out.println("Quotient: " + (num1 / num2));
         else
-            System.out.println("Error: Division by zero is not allowed!");
+            System.out.println("Division by zero is not allowed!");
     }
 
-    //  function for Fibonacci Sequence
+    // Fibonacci Sequence
     public static void fibonacci() {
         System.out.print("Enter the number of Fibonacci terms: ");
         int n = scanner.nextInt();
@@ -53,44 +54,33 @@ public class Calculator {
         System.out.println();
     }
 
-    //  function to calculate the Mean of Array
+    // Mean of Array
     public static void meanOfArray() {
         System.out.print("Enter the size of the array: ");
         int size = scanner.nextInt();
-        double[] array = getArrayInput(size);
-        double sum = 0;
-        for (double num : array)
-            sum += num;
-        System.out.println("Mean of array elements: " + (sum / size));
+        UserInput userInput = new UserInput();
+        int[] array = userInput.getArrayInput("Enter array elements:", size);
+
+        int sum = 0;
+        for (int num : array) sum += num;
+        System.out.println("Mean of array elements: " + (double) sum / size);
     }
 
-    //  function to calculate the Variance of Array
+    // Variance of Array
     public static void varianceOfArray() {
         System.out.print("Enter the size of the array: ");
         int size = scanner.nextInt();
-        double[] array = getArrayInput(size);
-        double mean = calculateMean(array);
+        UserInput userInput = new UserInput();
+        int[] array = userInput.getArrayInput("Enter array elements:", size);
+
+        int sum = 0;
+        for (int num : array) sum += num;
+        double mean = (double) sum / size;
+
         double variance = 0;
-        for (double num : array)
-            variance += Math.pow(num - mean, 2);
-        System.out.println("Variance of array elements: " + (variance / size));
-    }
+        for (int num : array) variance += Math.pow(num - mean, 2);
+        variance /= size;
 
-    // Helper: Input Array
-    private static double[] getArrayInput(int size) {
-        double[] array = new double[size];
-        System.out.println("Enter array elements:");
-        for (int i = 0; i < size; i++) {
-            array[i] = scanner.nextDouble();
-        }
-        return array;
-    }
-
-    // Helper: Calculate Mean
-    private static double calculateMean(double[] array) {
-        double sum = 0;
-        for (double num : array)
-            sum += num;
-        return sum / array.length;
+        System.out.println("Variance of array elements: " + variance);
     }
 }
