@@ -1,118 +1,52 @@
 // Name: Sarthak patil
 // PRN: 23070126088
-// Batch: 
+// Batch: AIML B1 (2023-2027)
 // Program: Calculator with Fibonacci, Mean, and Variance
 
 
 import java.util.Scanner;
 
-public class UserInput {
-    Scanner scanner = new Scanner(System.in);
 
-    public void showMenu() {
-        Calculator calculator = new Calculator();
+public class Main {
+    public static void main(String[] args) {
+        UserInput userInput = new UserInput();
         int choice;
 
         do {
-            System.out.println("Select an operation:");
-            System.out.println("1. Addition");
-            System.out.println("2. Subtraction");
-            System.out.println("3. Multiplication");
-            System.out.println("4. Division");
-            System.out.println("5. Fibonacci Sequence");
-            System.out.println("6. Mean of Array");
-            System.out.println("7. Variance of Array");
-            System.out.println("8. Exit");
-            System.out.print("Enter your choice: ");
-            choice = scanner.nextInt();
+            // Display menu to the user
+            System.out.println("\nSelect a Function:");
+            System.out.println("1. Add\n2. Subtract\n3. Multiply\n4. Divide\n5. Fibonacci\n6. Mean of Array\n7. Variance of Array\n8. Exit");
+            choice = userInput.getNumberInput("Enter your choice: ");
 
+            // Perform operation based on user's choice
             switch (choice) {
                 case 1:
-                    performAddition(calculator);
+                    Calculator.addition();
                     break;
                 case 2:
-                    performSubtraction(calculator);
+                    Calculator.subtraction();
                     break;
                 case 3:
-                    performMultiplication(calculator);
+                    Calculator.multiplication();
                     break;
                 case 4:
-                    performDivision(calculator);
+                    Calculator.division();
                     break;
                 case 5:
-                    performFibonacci(calculator);
+                    Calculator.fibonacci();
                     break;
                 case 6:
-                    performMean(calculator);
+                    Calculator.meanOfArray();
                     break;
                 case 7:
-                    performVariance(calculator);
+                    Calculator.varianceOfArray();
                     break;
                 case 8:
-                    System.out.println("Exiting the program. Goodbye!");
+                    System.out.println("Exiting program.");
                     break;
                 default:
-                    System.out.println("Invalid choice! Please try again.");
+                    System.out.println("Invalid choice, please try again.");
             }
         } while (choice != 8);
-    }
-
-    private void performAddition(Calculator calculator) {
-        System.out.print("Enter first number: ");
-        double num1 = scanner.nextDouble();
-        System.out.print("Enter second number: ");
-        double num2 = scanner.nextDouble();
-        System.out.println("Result: " + calculator.add(num1, num2));
-    }
-
-    private void performSubtraction(Calculator calculator) {
-        System.out.print("Enter first number: ");
-        double num1 = scanner.nextDouble();
-        System.out.print("Enter second number: ");
-        double num2 = scanner.nextDouble();
-        System.out.println("Result: " + calculator.subtract(num1, num2));
-    }
-
-    private void performMultiplication(Calculator calculator) {
-        System.out.print("Enter first number: ");
-        double num1 = scanner.nextDouble();
-        System.out.print("Enter second number: ");
-        double num2 = scanner.nextDouble();
-        System.out.println("Result: " + calculator.multiply(num1, num2));
-    }
-
-    private void performDivision(Calculator calculator) {
-        System.out.print("Enter numerator: ");
-        double num1 = scanner.nextDouble();
-        System.out.print("Enter denominator: ");
-        double num2 = scanner.nextDouble();
-        System.out.println("Result: " + calculator.divide(num1, num2));
-    }
-
-    private void performFibonacci(Calculator calculator) {
-        System.out.print("Enter the number of terms: ");
-        int terms = scanner.nextInt();
-        System.out.println("Fibonacci Sequence: " + calculator.fibonacci(terms));
-    }
-
-    private void performMean(Calculator calculator) {
-        double[] array = inputArray();
-        System.out.println("Mean: " + calculator.mean(array));
-    }
-
-    private void performVariance(Calculator calculator) {
-        double[] array = inputArray();
-        System.out.println("Variance: " + calculator.variance(array));
-    }
-
-    private double[] inputArray() {
-        System.out.print("Enter the size of the array: ");
-        int size = scanner.nextInt();
-        double[] array = new double[size];
-        System.out.println("Enter the elements of the array:");
-        for (int i = 0; i < size; i++) {
-            array[i] = scanner.nextDouble();
-        }
-        return array;
     }
 }
